@@ -10,9 +10,12 @@ dates = []
 for line in hand:
     line = line.decode().strip()
     date_result = re.findall('1[8-9][0-9]{2}', line)
+    if len(re.findall('Natural electric current in the Earth\'s crust', line)) != 0 :
+        break
     if date_result != []:
         for date in date_result:
             dates.append(date)
+
 print(dates)
 
 data = dates
@@ -20,5 +23,5 @@ plt.hist(data, bins='auto', color='skyblue', edgecolor='black')
 plt.xlabel('Dates Mentioned')
 plt.xticks(rotation=90)
 plt.title('Dates mentioned on Nikola Tesla Wikipedia')
-plt.show()
 plt.savefig('tesla_dates.png')
+plt.show()
